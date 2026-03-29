@@ -1,0 +1,30 @@
+{
+  "name": "easy-banking",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "sass": "1.97.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "^10.1.0",
+    "eslint-config-upleveled": "^10.0.0",
+    "prettier": "^3.8.1",
+    "stylelint": "^17.6.0",
+    "stylelint-config-upleveled": "^2.0.5",
+    "typescript": "^6.0.2"
+  },
+  "packageManager": "pnpm@10.28.2"
+}
