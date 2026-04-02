@@ -9,10 +9,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "@prisma/client": "^7.5.0",
+    "dotenv-safe": "^9.1.0",
     "next": "16.1.6",
+    "postgres": "^3.4.8",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "sass": "1.97.3"
+    "sass": "1.97.3",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
