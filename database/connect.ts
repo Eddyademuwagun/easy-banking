@@ -1,19 +1,31 @@
-import 'server only';
-import postgres, { type Sql } from 'postgres';
-import postgresJsConfig from '../ley.config.js';
-import { setEnvironmentalVariables } from '../util/config';
+import 'server-only';
+import { config } from 'dotenv-safe';
+import postgres from 'postgres';
 
-setEnvironmentalVariables();
+// Adds all environment variables inside
+// .env file to `process.env`
+config();
 
-declare namespace globalThis {
-  let postgresSqlClient: Sql;
-}
-
+// Connect only once to the database
+// https://github.com/vercel/next.js/issues/7811#issuecomment-715259370
 function connectOneTimeToDatabase() {
   if (!('postgresSqlClient' in globalThis)) {
-    globalThis.postgresSqlClient = postgres(postgresJsConfig);
+    globalThis.postgresSqlClient = postgres({
+      transform: {
+        ...postgres.camel,
+        undefined: null,
+      },
+    });
   }
+
   return globalThis.postgresSqlClient;
 }
 
 export const sql = connectOneTimeToDatabase();
+const users = await sql`
+SELECT
+ *
+ FROM
+  users`;
+
+console.log(users);

@@ -5,6 +5,7 @@ import { useState } from 'react';
 export default function RegisterForm() {
   const [form, setForm] = useState({
     username: '',
+    lastname: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -23,7 +24,7 @@ export default function RegisterForm() {
     e.preventDefault();
 
     // Basic validation
-    if (!form.username || !form.email || !form.password) {
+    if (!form.username || !form.lastname || !form.email || !form.password) {
       return setError('All fields are required');
     }
 
@@ -45,7 +46,9 @@ export default function RegisterForm() {
       body: JSON.stringify({
         user: {
           username: form.username,
+          lastname: form.lastname,
           password: form.password,
+          email: form.email,
         },
       }),
     });
@@ -65,6 +68,16 @@ export default function RegisterForm() {
         <input
           name="username"
           value={form.username}
+          onChange={handleChange}
+          required
+        />
+      </label>
+
+      <label>
+        lastname
+        <input
+          name="lastname"
+          value={form.lastname}
           onChange={handleChange}
           required
         />
