@@ -1,3 +1,4 @@
+import styles from './page.module.scss';
 import RegisterForm from './RegisterForm';
 
 export const metadata = {
@@ -6,5 +7,9 @@ export const metadata = {
 };
 
 export default function RegisterPage() {
-  return <RegisterForm />;
+  return (
+    <div className={styles.container}>
+      <RegisterForm />
+    </div>
+  );
 }

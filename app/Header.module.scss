@@ -4,6 +4,7 @@
   justify-content: space-between;
   display: flex;
   color: rgb(10, 44, 38);
+  width: 100%;
 }
 
 .header > div:first-child {
@@ -24,4 +25,19 @@
   &:hover {
     background-color: #005bb5;
   }
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between; // pushes left & right apart
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  gap: 16px;
+}
+
+.right {
+  display: flex;
 }

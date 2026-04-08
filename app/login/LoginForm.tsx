@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import styles from './LoginForm.module.scss';
 
 export default function LoginForm() {
   const [form, setForm] = useState({
@@ -9,6 +10,7 @@ export default function LoginForm() {
   });
 
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   function handleChange(e) {
     setForm({
@@ -25,27 +27,41 @@ export default function LoginForm() {
     }
 
     setError('');
+    setSuccess('');
 
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      body: JSON.stringify(form),
-    });
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: form.email,
+          password: form.password,
+        }),
+      });
 
-    if (!res.ok) {
-      return setError('Invalid credentials');
+      const data = await response.json();
+
+      if (!response.ok) {
+        return setError(data.message || 'Login failed');
+      }
+
+      setSuccess('Login successful');
+
+      // Optional: redirect
+      // window.location.href = '/dashboard';
+    } catch (err) {
+      setError('Something went wrong');
     }
-
-    const data = await res.json();
-    console.log('Logged in:', data);
-
-    // TODO: redirect user
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <h2>Login</h2>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
+      {success && <p style={{ color: 'green' }}>{success}</p>}
 
       <label>
         Email
