@@ -57,35 +57,41 @@ export default function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <h2>Login</h2>
+    <div className={styles.wrapper}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <h2 className={styles.title}>Login</h2>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
+        {error && <p className={styles.error}>{error}</p>}
+        {success && <p className={styles.success}>{success}</p>}
 
-      <label>
-        Email
-        <input
-          type="email"
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-          required
-        />
-      </label>
+        <label className={styles.label}>
+          Email
+          <input
+            className={styles.input}
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+        </label>
 
-      <label>
-        Password
-        <input
-          type="password"
-          name="password"
-          value={form.password}
-          onChange={handleChange}
-          required
-        />
-      </label>
+        <label className={styles.label}>
+          Password
+          <input
+            className={styles.input}
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+        </label>
 
-      <button type="submit">Login</button>
-    </form>
+        <button className={styles.button} type="submit">
+          Login
+        </button>
+      </form>
+    </div>
   );
 }

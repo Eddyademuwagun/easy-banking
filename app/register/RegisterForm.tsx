@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+// import styles from './page.module.scss';
 import styles from './RegisterForm.module.scss';
 
 export default function RegisterForm() {
@@ -59,65 +60,74 @@ export default function RegisterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Register</h2>
+    <div className={styles.wrapper}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <h2 className={styles.title}>Register</h2>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p className={styles.error}>{error}</p>}
 
-      <label>
-        Username
-        <input
-          name="username"
-          value={form.username}
-          onChange={handleChange}
-          required
-        />
-      </label>
+        <label className={styles.label}>
+          Username
+          <input
+            className={styles.input}
+            name="username"
+            value={form.username}
+            onChange={handleChange}
+            required
+          />
+        </label>
 
-      <label>
-        lastname
-        <input
-          name="lastname"
-          value={form.lastname}
-          onChange={handleChange}
-          required
-        />
-      </label>
+        <label className={styles.label}>
+          Lastname
+          <input
+            className={styles.input}
+            name="lastname"
+            value={form.lastname}
+            onChange={handleChange}
+            required
+          />
+        </label>
 
-      <label>
-        Email
-        <input
-          type="email"
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-          required
-        />
-      </label>
+        <label className={styles.label}>
+          Email
+          <input
+            className={styles.input}
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+        </label>
 
-      <label>
-        Password
-        <input
-          type="password"
-          name="password"
-          value={form.password}
-          onChange={handleChange}
-          required
-        />
-      </label>
+        <label className={styles.label}>
+          Password
+          <input
+            className={styles.input}
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+        </label>
 
-      <label>
-        Confirm Password
-        <input
-          type="password"
-          name="confirmPassword"
-          value={form.confirmPassword}
-          onChange={handleChange}
-          required
-        />
-      </label>
+        <label className={styles.label}>
+          Confirm Password
+          <input
+            className={styles.input}
+            type="password"
+            name="confirmPassword"
+            value={form.confirmPassword}
+            onChange={handleChange}
+            required
+          />
+        </label>
 
-      <button type="submit">Create Account</button>
-    </form>
+        <button className={styles.button} type="submit">
+          Create Account
+        </button>
+      </form>
+    </div>
   );
 }

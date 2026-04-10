@@ -1,16 +1,16 @@
-/* Full page background wrapper */
+/* Full page background */
 .wrapper {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff6c9; /* pastel yellow */
+  background-color: #bffaf3; /* pastel turquoise */
 }
 
-/* Login card */
+/* Card */
 .form {
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   padding: 32px;
   background: white;
   border-radius: 16px;
@@ -18,36 +18,37 @@
 
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 /* Title */
 .title {
   text-align: center;
-  color: #0b3d2e;
+  color: #0b4f4a;
 }
 
-/* Label */
+/* Labels */
 .label {
   display: flex;
   flex-direction: column;
   font-size: 14px;
-  color: #145a3a;
+  color: #0b6b63;
   gap: 6px;
 }
 
-/* Input fields */
+/* Inputs */
 .input {
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid #d9e6df;
+  border: 1px solid #ccefe9;
   outline: none;
   font-size: 14px;
+  transition: 0.2s ease;
 }
 
 .input:focus {
-  border-color: #2ecc71;
-  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+  border-color: #2dd4bf;
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.2);
 }
 
 /* Button */
@@ -56,23 +57,19 @@
   padding: 12px;
   border: none;
   border-radius: 8px;
-  background: #2ecc71;
+  background: #14b8a6;
   color: white;
   font-weight: 600;
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .button:hover {
-  background: #27ae60;
+  background: #0f766e;
 }
 
-/* Messages */
+/* Error */
 .error {
   color: #e74c3c;
-  font-size: 14px;
-}
-
-.success {
-  color: #2ecc71;
   font-size: 14px;
 }

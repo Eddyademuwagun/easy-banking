@@ -24,3 +24,18 @@ export const createUserInsecure = async (
     `;
   return user;
 };
+
+export const getUserWithPasswordHashInsecure = async (email) => {
+  console.log('user.ts file saving user');
+  const [user] = await sql`
+     SELECT
+        id,
+        first_name,
+        password_hash
+      FROM
+        users
+      WHERE
+        email = ${email.toLowerCase()}
+    `;
+  return user;
+};

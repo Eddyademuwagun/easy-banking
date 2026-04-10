@@ -8,6 +8,7 @@ export default function Header() {
         <Link href="/">Homepage</Link>
         {/* <Link href="/send-money">Send Money</Link> */}
         <Link href="/login" className={styles.loginButton}>
+
           Login
         </Link>
         <Link href="/register" className={styles.loginButton}>
