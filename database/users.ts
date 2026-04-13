@@ -25,6 +25,26 @@ export const createUserInsecure = async (
   return user;
 };
 
+export const getUser = async (sessionToken) => {
+  const [user] = await sql`
+    SELECT
+      users.id,
+      users.first_name
+    FROM
+      users
+      INNER JOIN sessions ON (
+        -- Session token matches
+        sessions.token = ${sessionToken}
+        -- Session expiry timestamp in future (not yet expired)
+        AND sessions.expiry_timestamp > now()
+        -- Connect session with user
+        AND users.id = sessions.user_id
+      )
+  `;
+
+  return user;
+};
+
 export const getUserWithPasswordHashInsecure = async (email) => {
   console.log('user.ts file saving user');
   const [user] = await sql`

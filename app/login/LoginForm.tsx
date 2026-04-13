@@ -1,5 +1,5 @@
 'use client';
-
+import { redirect, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import styles from './LoginForm.module.scss';
 
@@ -11,6 +11,8 @@ export default function LoginForm() {
 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
+  const router = useRouter();
 
   function handleChange(e) {
     setForm({
@@ -48,10 +50,10 @@ export default function LoginForm() {
       }
 
       setSuccess('Login successful');
-
-      // Optional: redirect
-      // window.location.href = '/dashboard';
+      router.push('/');
+      router.refresh();
     } catch (err) {
+      console.log(err);
       setError('Something went wrong');
     }
   }

@@ -22,10 +22,3 @@ function connectOneTimeToDatabase() {
 }
 
 export const sql = connectOneTimeToDatabase();
-const users = await sql`
-SELECT
- *
- FROM
-  users`;
-
-console.log(users);

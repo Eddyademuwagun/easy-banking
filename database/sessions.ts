@@ -35,11 +35,12 @@ export const deleteSession = async (sessionToken) => {
 export const createSessionInsecure = async (token, userId) => {
   const [session] = await sql`
     INSERT INTO
-      sessions (token, user_id)
+      sessions (token, user_id, expiry_timestamp)
     VALUES
       (
         ${token},
-        ${userId}
+        ${userId},
+         now() + interval '5 minutes'
       )
     RETURNING
       sessions.*

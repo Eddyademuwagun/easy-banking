@@ -64,6 +64,7 @@ export async function POST(req) {
       },
     });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { message: 'email or password invalid' },
       { status: 500 },
