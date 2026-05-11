@@ -14,7 +14,7 @@ export default async function LoginPage() {
 
   // 3. If session token is valid, redirect to homepage
   if (session) {
-    redirect('/');
+    redirect('/account');
   }
 
   return (

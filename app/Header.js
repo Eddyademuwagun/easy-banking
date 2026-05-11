@@ -6,7 +6,10 @@ import LogoutButton from './logout/LogoutButton';
 
 export default async function Header() {
   const sessionToken = (await cookies()).get('sessionToken')?.value;
+  console.log('this is the header session token log.  ' + sessionToken);
+
   const user = sessionToken && (await getUser(sessionToken));
+  console.log('this is the header user log.  ' + user);
 
   return (
     <header className={styles.header}>
@@ -27,6 +30,9 @@ export default async function Header() {
                 {user.firstName}
               </Link>
               <LogoutButton />
+              <Link href="/account" className={styles.account}>
+                Account
+              </Link>
             </>
           ) : (
             <>

@@ -10,7 +10,6 @@ export async function POST(req) {
     const { email, password } = await req.json();
 
     const user = await getUserWithPasswordHashInsecure(email);
-    console.log(user);
 
     if (!user) {
       return NextResponse.json(
@@ -20,7 +19,6 @@ export async function POST(req) {
     }
 
     const isValid = await bcrypt.compare(password, user.passwordHash);
-    console.log(isValid);
 
     if (!isValid) {
       return NextResponse.json(
@@ -31,9 +29,11 @@ export async function POST(req) {
 
     // 5. Generate session token
     const sessionToken = crypto.randomBytes(100).toString('base64');
+    console.log(' 5. Generate session token. ' + sessionToken);
 
     // 6. Insert session into `sessions` table
     const session = await createSessionInsecure(sessionToken, user.id);
+    console.log(' 6. Insert session into `sessions` table. ' + session);
 
     if (!session) {
       return NextResponse.json(
@@ -47,22 +47,25 @@ export async function POST(req) {
     }
 
     // 7. Create secure cookie via response header
-    (await cookies()).set({
-      name: 'sessionToken',
-      value: session.token,
-      httpOnly: true,
-      secure: true,
-      sameSite: 'lax',
-      path: '/',
-    });
-
-    return NextResponse.json({
+    const response = NextResponse.json({
       message: 'Login successful',
       user: {
         id: user.id,
         email: user.email,
       },
     });
+
+    response.cookies.set({
+      name: 'sessionToken',
+      value: session.token,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7,
+    });
+
+    return response;
   } catch (error) {
     console.log(error);
     return NextResponse.json(
