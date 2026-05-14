@@ -3,23 +3,44 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createUserInsecure } from '../../../database/users';
 
 export async function POST(req: NextRequest) {
-  console.log('API route hit');
+  try {
+    const { user } = await req.json();
 
-  const body = await req.json();
-  console.log('Body received:', body);
-  const passwordHash = await bcrypt.hash(body.user.password, 12);
-  console.log(passwordHash);
+    if (!user) {
+      return NextResponse.json(
+        { ok: false, error: 'Missing user data' },
+        { status: 400 },
+      );
+    }
 
-  const user = await createUserInsecure(
-    body.user.username,
-    body.user.lastname,
-    body.user.email,
-    passwordHash,
-  );
+    const { username, lastname, email, password } = user;
 
-  // Here you would normally save to your DB
-  return NextResponse.json({
-    ok: true,
-    message: 'User registered successfully',
-  });
+    if (!username || !lastname || !email || !password) {
+      return NextResponse.json(
+        { ok: false, error: 'All fields are required' },
+        { status: 400 },
+      );
+    }
+
+    const passwordHash = await bcrypt.hash(password, 12);
+
+    const newUser = await createUserInsecure(
+      username,
+      lastname,
+      email,
+      passwordHash,
+    );
+
+    return NextResponse.json({
+      ok: true,
+      user: newUser,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return NextResponse.json(
+      { ok: false, error: 'Server error' },
+      { status: 500 },
+    );
+  }
 }

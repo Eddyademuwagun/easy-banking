@@ -50,7 +50,7 @@ export default function LoginForm() {
       }
 
       setSuccess('Login successful');
-      router.push('/account'); // i have to add userID in the bracket /account/userID
+      router.push(`/account/${data.user.id}`); // i have to add userID in the bracket /account/userID
       router.refresh();
     } catch (err) {
       console.log(err);

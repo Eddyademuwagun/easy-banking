@@ -46,7 +46,6 @@ export const getUser = async (sessionToken) => {
 };
 
 export const getUserWithPasswordHashInsecure = async (email) => {
-  console.log('user.ts file saving user');
   const [user] = await sql`
      SELECT
         id,
@@ -56,6 +55,21 @@ export const getUserWithPasswordHashInsecure = async (email) => {
         users
       WHERE
         email = ${email.toLowerCase()}
+    `;
+  return user;
+};
+
+export const getUserById = async (id) => {
+  const [user] = await sql`
+     SELECT
+        id,
+        first_name,
+        email,
+        balance
+      FROM
+        users
+      WHERE
+        id = ${id}
     `;
   return user;
 };
