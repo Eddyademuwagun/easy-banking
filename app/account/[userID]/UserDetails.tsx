@@ -1,11 +1,6 @@
 // app/account/page.tsx (NO 'use client')
 import styles from './Account.module.scss';
 
-// async function getUser() {
-//   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/me`, {
-//     cache: 'no-store',
-//   });
-
 //   if (!res.ok) {
 //     return null;
 //   }
@@ -14,26 +9,7 @@ import styles from './Account.module.scss';
 // }
 
 export default function UserDetails({ user }) {
-  const transactions = [
-    {
-      id: 1,
-      type: 'Deposit',
-      amount: 200,
-      date: '2026-05-14',
-    },
-    {
-      id: 2,
-      type: 'Purchase',
-      amount: -45,
-      date: '2026-05-13',
-    },
-    {
-      id: 3,
-      type: 'Transfer',
-      amount: -20,
-      date: '2026-05-12',
-    },
-  ];
+  const transactions = [];
   // const data = await getUser();
 
   // if (!data) {
@@ -59,11 +35,6 @@ export default function UserDetails({ user }) {
         <p>
           <strong>Name:</strong> {user.firstName}
         </p>
-      </div>
-
-      <div className={styles.card}>
-        <h2>Balance</h2>
-        <p className={styles.balance}>€{user.balance}</p>
       </div>
 
       <div className={styles.card}>

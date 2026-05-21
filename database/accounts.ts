@@ -7,7 +7,7 @@ export const getAccountsById = async (id) => {
       FROM
         accounts
       WHERE
-        id = ${id}
+        user_id = ${id}
     `;
   return accounts;
 };

@@ -4,6 +4,7 @@ import { getAccountsById } from '../../../database/accounts';
 import { getValidSession } from '../../../database/sessions';
 import { getUserById } from '../../../database/users';
 import styles from './Account.module.scss';
+import AccountDetails from './AccountDetails';
 import UserDetails from './UserDetails';
 
 export default async function AccountPage(props) {
@@ -11,6 +12,8 @@ export default async function AccountPage(props) {
   const user = await getUserById(Number(params.userID));
   const account = await getAccountsById(Number(params.userID));
   const sessionToken = (await cookies()).get('sessionToken')?.value;
+
+  console.log('This Is The Account', account);
 
   if (!sessionToken) {
     redirect('/');
@@ -25,6 +28,8 @@ export default async function AccountPage(props) {
   return (
     <main>
       <UserDetails user={user} />
+
+      <AccountDetails accounts={account} />
     </main>
   );
 }
