@@ -1,6 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { deleteSession } from '../../database/sessions';
 
 export async function logout() {
@@ -13,4 +14,7 @@ export async function logout() {
 
   // 3. Delete cookie from browser
   (await cookies()).delete('sessionToken');
+
+  // 4. Redirect to home page
+  redirect('/');
 }

@@ -13,7 +13,7 @@ import styles from './Account.module.scss';
 //   return res.json();
 // }
 
-export default function Account({ user }) {
+export default function UserDetails({ user }) {
   const transactions = [
     {
       id: 1,
