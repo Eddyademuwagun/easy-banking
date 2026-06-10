@@ -9,7 +9,6 @@ import styles from './Account.module.scss';
 // }
 
 export default function UserDetails({ user }) {
-  const transactions = [];
   // const data = await getUser();
 
   // if (!data) {
@@ -33,29 +32,8 @@ export default function UserDetails({ user }) {
           <strong>Email:</strong> {user.email}
         </p>
         <p>
-          <strong>Name:</strong> {user.firstName}
+          <strong>Name:</strong> {user.fullname}
         </p>
-      </div>
-
-      <div className={styles.card}>
-        <h2>Transactions</h2>
-
-        {transactions.map((transaction) => (
-          <div key={transaction.id} className={styles.transaction}>
-            <div>
-              <p>{transaction.type}</p>
-              <small>{transaction.date}</small>
-            </div>
-
-            <p
-              className={
-                transaction.amount > 0 ? styles.income : styles.expense
-              }
-            >
-              {transaction.amount > 0 ? '+' : ''}€{transaction.amount}
-            </p>
-          </div>
-        ))}
       </div>
     </div>
   );

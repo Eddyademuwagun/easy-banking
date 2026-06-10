@@ -1,58 +1,68 @@
 .wrapper {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 2rem auto;
+  padding: 1rem;
+  background: #f8fafc;
+  min-height: 20vh;
 }
 
 .title {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2rem;
 }
 
 .card {
-  background: #111;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-}
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e2e8f0;
 
-.balance {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #4caf50;
-}
+  h2 {
+    margin-bottom: 1rem;
+    color: #1e293b;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
 
-.actions button {
-  margin-right: 1rem;
-}
-
-.logout {
-  background: red;
-  color: white;
-}
-
-.error {
-  color: white;
-}
-
-.loading {
-  color: white;
+  p {
+    margin: 0.5rem 0;
+    color: #475569;
+  }
 }
 
 .transaction {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e2e8f0;
 
-  padding: 12px 0;
-  border-bottom: 1px solid #ddd;
+  &:last-child {
+    border-bottom: none;
+  }
+
+  p {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  small {
+    color: #94a3b8;
+  }
 }
 
 .income {
-  color: green;
-  font-weight: bold;
+  color: #16a34a;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
 .expense {
-  color: red;
-  font-weight: bold;
+  color: #dc2626;
+  font-weight: 700;
+  font-size: 1.1rem;
 }

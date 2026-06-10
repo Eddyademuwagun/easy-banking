@@ -1,0 +1,80 @@
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns:
+    180px
+    1fr
+    1fr
+    150px
+    150px;
+
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 0.75rem;
+}
+
+.transactionRow {
+  display: grid;
+  grid-template-columns:
+    180px
+    1fr
+    1fr
+    150px
+    150px;
+
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  }
+}
+
+.date {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.incoming {
+  color: #16a34a;
+  font-weight: 700;
+}
+
+.outgoing {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .tableHeader {
+    display: none;
+  }
+
+  .transactionRow {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}

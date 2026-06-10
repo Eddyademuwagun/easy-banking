@@ -2,27 +2,47 @@ import { sql } from './connect';
 
 export const getTransactionsByAccountId = async (accountId) => {
   const transactions = await sql`
-  SELECT
-    t.*,
+    SELECT
+      t.*,
 
-    CONCAT(sender_user.first_name, ' ', sender_user.last_name) AS senderName,
-    CONCAT(receiver_user.first_name, ' ', receiver_user.last_name) AS receiverName
+      json_build_object(
+        'id', sa.id,
+        'user_id', sa.user_id,
+        'account_type', sa.account_type,
+        'current_balance', sa.current_balance,
+        'available_balance', sa.available_balance,
+        'iban', sa.iban,
+        'bic', sa.bic,
+        'first_name', su.first_name,
+        'last_name', su.last_name,
+        'senderName', CONCAT(su.first_name, ' ', su.last_name)
+      ) AS sender,
 
-  FROM transaction t
+      json_build_object(
+        'id', ra.id,
+        'user_id', ra.user_id,
+        'account_type', ra.account_type,
+        'current_balance', ra.current_balance,
+        'available_balance', ra.available_balance,
+        'iban', ra.iban,
+        'bic', ra.bic,
+        'first_name', ru.first_name,
+        'last_name', ru.last_name,
+        'receiverName', CONCAT(ru.first_name, ' ', ru.last_name)
+      ) AS receiver
 
-  JOIN accounts sender_account
-    ON t.sender_id = sender_account.id
-  JOIN users sender_user
-    ON sender_account.user_id = sender_user.id
+    FROM transaction t
 
-  JOIN accounts receiver_account
-    ON t.receiver_id = receiver_account.id
-  JOIN users receiver_user
-    ON receiver_account.user_id = receiver_user.id
+    JOIN accounts sa ON t.sender_id = sa.id
+    JOIN users su ON sa.user_id = su.id
 
-  WHERE
-    t.sender_id = ${accountId}
-    OR t.receiver_id = ${accountId}
-`;
+    JOIN accounts ra ON t.receiver_id = ra.id
+    JOIN users ru ON ra.user_id = ru.id
+
+    WHERE
+      t.sender_id = ${accountId}
+      OR t.receiver_id = ${accountId}
+  `;
+
   return transactions;
 };

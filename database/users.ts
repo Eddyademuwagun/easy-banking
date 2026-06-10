@@ -63,7 +63,7 @@ export const getUserById = async (id) => {
   const [user] = await sql`
      SELECT
         id,
-        first_name,
+        CONCAT(first_name, ' ', last_name) AS fullName,
         email,
         balance
       FROM

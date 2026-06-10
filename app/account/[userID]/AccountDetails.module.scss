@@ -1,0 +1,39 @@
+.container {
+  max-width: 1000px;
+  margin: 1rem auto;
+}
+
+.accountCard {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: white;
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.25);
+}
+
+.accountType {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.balanceSection {
+  margin-top: 1rem;
+}
+
+.balanceLabel {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.balance {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.details {
+  display: none; // remove incoming/outgoing from card
+}

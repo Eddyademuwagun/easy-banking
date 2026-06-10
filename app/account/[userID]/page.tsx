@@ -12,8 +12,10 @@ import UserDetails from './UserDetails';
 export default async function AccountPage(props) {
   const params = await props.params;
   const user = await getUserById(Number(params.userID));
+  console.log('this is the user from account page', user.fu);
   const account = await getAccountsById(Number(params.userID));
   const transactions = await getTransactionsByAccountId(Number(account.id));
+  console.log('AAAAAAAAAAALLLLLLLLLLLLLLLLL', transactions);
   const sessionToken = (await cookies()).get('sessionToken')?.value;
 
   console.log('This Are The Transactions', transactions);
@@ -35,7 +37,10 @@ export default async function AccountPage(props) {
 
       <AccountDetails account={account} />
 
-      <TransactionDetails transactions={transactions} />
+      <TransactionDetails
+        transactions={transactions}
+        accountName={user.fullname}
+      />
     </main>
   );
 }
